@@ -1,0 +1,32 @@
+CRITICAL - 2022-07-21 16:14:40 --> Call to undefined method App\Models\TicketModel::ViewTicket
+in SYSTEMPATH\Model.php on line 773.
+ 1 APPPATH\Controllers\TicketController.php(33): CodeIgniter\Model->__call('ViewTicket', [])
+ 2 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\TicketController->ViewTicket()
+ 3 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TicketController))
+ 4 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(43): require_once('FCPATH\\index.php')
+CRITICAL - 2022-07-21 16:37:35 --> Call to undefined method App\Models\TicketModel::EditTicket
+in SYSTEMPATH\Model.php on line 773.
+ 1 APPPATH\Controllers\TicketController.php(151): CodeIgniter\Model->__call('EditTicket', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\TicketController->EditTicket()
+ 3 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TicketController))
+ 4 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(43): require_once('FCPATH\\index.php')
+CRITICAL - 2022-07-21 16:38:38 --> Call to undefined method App\Models\TicketModel::EditTicket
+in SYSTEMPATH\Model.php on line 773.
+ 1 APPPATH\Controllers\TicketController.php(151): CodeIgniter\Model->__call('EditTicket', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\TicketController->EditTicket()
+ 3 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TicketController))
+ 4 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(43): require_once('FCPATH\\index.php')
+CRITICAL - 2022-07-21 16:39:53 --> Call to undefined method App\Models\TicketModel::EditTicket
+in SYSTEMPATH\Model.php on line 773.
+ 1 APPPATH\Controllers\TicketController.php(151): CodeIgniter\Model->__call('EditTicket', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\TicketController->EditTicket()
+ 3 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TicketController))
+ 4 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(43): require_once('FCPATH\\index.php')

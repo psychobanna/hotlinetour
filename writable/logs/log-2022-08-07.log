@@ -1,0 +1,16 @@
+CRITICAL - 2022-08-07 15:36:45 --> Call to undefined method App\Models\BookingModel::AddAgent
+in SYSTEMPATH\Model.php on line 773.
+ 1 APPPATH\Controllers\BookingController.php(106): CodeIgniter\Model->__call('AddAgent', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\BookingController->AddBooking()
+ 3 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BookingController))
+ 4 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(43): require_once('FCPATH\\index.php')
+CRITICAL - 2022-08-07 15:36:50 --> Call to undefined method App\Models\BookingModel::AddAgent
+in SYSTEMPATH\Model.php on line 773.
+ 1 APPPATH\Controllers\BookingController.php(106): CodeIgniter\Model->__call('AddAgent', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\BookingController->AddBooking()
+ 3 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BookingController))
+ 4 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(43): require_once('FCPATH\\index.php')
