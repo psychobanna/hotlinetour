@@ -18,7 +18,6 @@ function Login(props) {
     
     const submitForm = async (event) => {
         event.preventDefault();
-        console.log("submit");
 
         if(validator.isEmpty(username)){
             setUsernameError("Username is empty");
@@ -40,8 +39,6 @@ function Login(props) {
 
         let data = {"username":username,"password":password};
         const n = await request.PostMethod("login",data);
-
-        console.log(n);
         
         if(n.data.response_code == 422){
             setAlertMessage(n.data.message);

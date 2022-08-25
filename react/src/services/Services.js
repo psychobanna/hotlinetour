@@ -30,11 +30,6 @@ export class Services{
         };
 
         return await axios.post(this.BaseUrl+"api/checktokenstatus", axiosConfig).then((resp)=>{
-            // let navigator = useNavigate();
-            // // if(resp){
-
-            // // }
-            // navigator('login');
             console.log(resp);
         }).catch((resp)=>{
             console.log(resp);

@@ -27,9 +27,7 @@ export const ThankYou = () => {
         setCompanyName(localStorage.getItem("company_name")?localStorage.getItem("company_name"):"Sagar Hotline Tours");
 
         request.GetAuthMethod("thankyou/"+id).then((m)=>{
-            console.log(m);
             setCustomerDetails(m.data.data);
-            console.log(m.data.data);
         });
 
         

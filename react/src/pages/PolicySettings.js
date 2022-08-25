@@ -18,20 +18,20 @@ export function PolicySettings() {
   const [btnName, setBtnName] = useState("Submit");
   
   const [open, setOpen] = React.useState(false);
+  const [tokenID, setTokenID] = React.useState(localStorage.getItem("secure-id"));
+  const [disabled, setDisabled] = React.useState(tokenID==1?false:true);
+  
  
   useEffect(()=>{
 
         const request = new Services;
 
-        
         request.GetAuthMethod("viewactivepage/1").then((m)=>{
-        let page = m.data.data[0];
-        setName(page.name);
-        setContent(page.content);
-        setStatus(page.status);
-        console.log(page);
+            let page = m.data.data[0];
+            setName(page.name);
+            setContent(page.content);
+            setStatus(page.status);
         });
-
     },[]);
 
   const submitForm = async (event) => {
@@ -59,7 +59,6 @@ export function PolicySettings() {
 
 
       let data = {"name":name,"content":content};
-      let userID = localStorage.getItem("secure-id");
       const n = await request.PostAuthMethod("editpage/1",data);
       
       if(n.data.response_code == 422){
@@ -92,7 +91,7 @@ export function PolicySettings() {
       setUsername(e.target.value);
   }
 
-
+  
   return (
     <div>                
             <Container xs={12}>
@@ -106,13 +105,13 @@ export function PolicySettings() {
                 </Snackbar>
                     <Grid container>
                         <Grid xs={12} Item textAlign={"center"} p={2}>
-                            <TextField type={"text"} value={name} label="Page Title" onChange={(e)=>{ setName(e.target.value) }} helperText={nameError?nameError:''} error={nameError?true:false}></TextField>
+                            <TextField type={"text"} value={name} label="Page Title" onChange={(e)=>{ setName(e.target.value) }} helperText={nameError?nameError:''} error={nameError?true:false} disabled={disabled}></TextField>
                         </Grid>
                         <Grid xs={12} Item textAlign={"left"} p={2}>
-                            <DefaultEditor value={content} onChange={(e)=>{ setContent(e.target.value) }} style={{height: "200px"}}/>
+                            <DefaultEditor value={content} onChange={(e)=>{ setContent(e.target.value) }} style={{height: "200px"}}  disabled={disabled}/>
                         </Grid>
                         <Grid xs={12} Item textAlign={"center"} p={2}>
-                            <Button variant="contained" onClick={(e)=>{submitForm(e)}}>{ btnName }</Button>
+                            <Button variant="contained" onClick={(e)=>{submitForm(e)}} disabled={disabled}>{ btnName }</Button>
                         </Grid>
 
                     </Grid>

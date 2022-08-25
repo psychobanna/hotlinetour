@@ -58,8 +58,6 @@ export function ViewBooking(props) {
         { field: 'date_time', headerName: 'Date', width: 130 }
     ];
 
-  console.log(columns);
-
   return (<div>
         <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
             <Alert onClose={handleClose} severity={alertType} sx={{ width: '100%' }}>

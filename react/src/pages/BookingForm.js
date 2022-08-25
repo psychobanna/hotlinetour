@@ -1,10 +1,11 @@
-import { Alert, Box, Button, Checkbox, Container, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, Grid, InputLabel, MenuItem, Select, Snackbar, TextField } from '@mui/material';
+import { Alert, Box, Button, Card, Checkbox, Container, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, Grid, InputLabel, MenuItem, Select, Snackbar, TextField } from '@mui/material';
 import * as React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import validator from 'validator';
 import { Services } from '../services/Services';
+import bg from '../assets/bg-2.jpg'; 
+
 export const BookingForm = () => {
-    
     const [agent, setAgent] = React.useState([]);
     const [agentId, setAgentId] = React.useState("");
     const [paymentKey, setPaymentKey] = React.useState("");
@@ -41,7 +42,6 @@ export const BookingForm = () => {
 
         request.GetMethod("viewpaymentkeyvalue").then((m)=>{
             let account = m.data.data[0];
-            console.log(account);
             setPaymentKey(account.payment_key);
             setCompanyName(account.company_name);
         });
@@ -51,9 +51,10 @@ export const BookingForm = () => {
             let price = ticket.price;
             let ticketStatus = ticket.qty == 0?false:true;
             setTicketStatus(ticketStatus);
+
+            console.log(ticketStatus);
             
             setAmount(ticket.price);
-            console.log(amount);
         });
 
         request.GetMethod("viewactiveagent").then((m)=>{
@@ -72,7 +73,6 @@ export const BookingForm = () => {
 
         request.GetMethod("viewactivepage").then((m)=>{
             let page = m.data.data[0];
-            console.log(page);
             setPageContent(page.content);
             setPageTitle(page.name);
         });
@@ -80,17 +80,14 @@ export const BookingForm = () => {
 
     const handleChange = (event) => {
         setAgentId(event.target.value);
-        console.log(event.target.value);
     };
 
     const handleChangeTitle = (event) => {
         setCustomerTitle(event.target.value);
-        console.log(event.target.value);
     };
 
     const goBack = () => {
         setAgentId("");
-        console.log(agentId);
     }
         
     const handleClose = (event, reason) => {
@@ -146,15 +143,10 @@ export const BookingForm = () => {
             setTimeout(()=>{
                 setOpen(false);
             },2000);
-    
-            navigate("/thankyou");
+            
+            navigate("/thankyou/"+n.data.data.insert_id);
 
         }
-        
-        console.log(n.data.data.insert_id);
-
-
-
     }
     
     const payNow = async (amount) =>{
@@ -246,7 +238,6 @@ export const BookingForm = () => {
             image:"",
             handler: function (response) {
                 setPaymentID(response.razorpay_payment_id);
-                console.log(response);
                 saveSuccessPayment(response);
             },
             prefill: {
@@ -257,14 +248,6 @@ export const BookingForm = () => {
         const paymentObject = new window.Razorpay(options);
         
         paymentObject.on('payment.failed',function (response){
-            console.log("code",response.error.code);
-            console.log("description",response.error.description);
-            console.log("source",response.error.source);
-            console.log("step",response.error.step);
-            console.log("reason",response.error.reason);
-            console.log("order_id",response.error.metadata.order_id);
-            console.log("payment_id",response.error.metadata.payment_id);
-
             setAlertMessage(response.error.description);
             setAlertType("error");
             setOpen(true);
@@ -289,7 +272,7 @@ export const BookingForm = () => {
       setOpenPopup(false);
     };
 
-    return <>{ticketStatus?(<div><Dialog
+    return <>{ticketStatus?(<div style={{background:`url(${bg})`,height:" 100vh",backgroundSize: "cover",backgroundPosition: "center"}}><Dialog
                 open={openPopup}
                 onClose={handleClosePopup}
                 aria-labelledby="alert-dialog-title"
@@ -316,7 +299,7 @@ export const BookingForm = () => {
             <Box sx={{ minWidth: 120, paddingTop:"30px",paddingRight:"30px", textAlign:"right" }}>
                 {agentId && <Button variant="contained" onClick={goBack}>Back</Button>}
             </Box>
-            <Container maxWidth="sm">
+            <Card maxWidth="sm" style={{width:"500px",margin:"auto", padding:"30px"}}>
                 <Box sx={{ minWidth: 120 }} style={{padding:"60px 0px 20px 0px", textAlign:"center"}}>
                     <h2>Book Your Trip</h2>
                 </Box>
@@ -382,6 +365,6 @@ export const BookingForm = () => {
                         </Box>
                     </FormControl></>}
                 </Box>
-            </Container>            
+            </Card>            
         </div>):(<div style={{height:"100vh",width:"100vw",display:"flex",alignItems:"center",justifyContent:"center"}}>Sorry, Ticket Sold Out!</div>)}</>;
 };

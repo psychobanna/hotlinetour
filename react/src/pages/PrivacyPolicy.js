@@ -15,7 +15,6 @@ export function PrivacyPolicy() {
 
         request.GetMethod("viewactivepage").then((m)=>{
             let page = m.data.data[0];
-            console.log(page);
             setPageContent(page.content);
             setPageTitle(page.name);
         });

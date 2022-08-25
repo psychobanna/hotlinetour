@@ -17,20 +17,19 @@ export function ProfileSettings() {
   const [btnName, setBtnName] = useState("Submit");
   
   const [open, setOpen] = React.useState(false);
+  const [tokenID, setTokenID] = React.useState(localStorage.getItem("secure-id"));
+  const [disabled, setDisabled] = React.useState(tokenID==1?false:true);
  
   useEffect(()=>{
 
         const request = new Services;
 
         request.GetAuthMethod("viewpaymentkeyvalue").then((m)=>{
-        let company = m.data.data[0];
-        
-        localStorage.setItem("company_name",company.company_name);
-
-        setPaymentKey(company.payment_key);
-        setPaymentValue(company.payment_value);
-        setCompanyName(company.company_name);
-          console.log(page);
+            let company = m.data.data[0];
+            localStorage.setItem("company_name",company.company_name);
+            setPaymentKey(company.payment_key);
+            setPaymentValue(company.payment_value);
+            setCompanyName(company.company_name);
         });
 
     },[]);
@@ -100,7 +99,7 @@ export function ProfileSettings() {
   const onChangeUsername = (e) =>{
       setUsername(e.target.value);
   }
-
+  
 
   return (
     <div>                
@@ -115,16 +114,16 @@ export function ProfileSettings() {
                 </Snackbar>
                     <Grid container>
                         <Grid xs={12} Item textAlign={"center"} p={2}>
-                            <TextField type={"text"} value={companyName} label="Company Name" onChange={(e)=>{ setCompanyName(e.target.value) }} helperText={companyNameError?companyNameError:''} error={companyNameError?true:false}></TextField>
+                            <TextField type={"text"} value={companyName} label="Company Name" onChange={(e)=>{ setCompanyName(e.target.value) }} helperText={companyNameError?companyNameError:''} error={companyNameError?true:false} disabled={disabled}></TextField>
                         </Grid>
                         <Grid xs={12} Item textAlign={"center"} p={2}>
-                            <TextField type={"text"} value={paymentValue} label="Contact" onChange={(e)=>{ setPaymentValue(e.target.value) }} helperText={paymentValueError?paymentValueError:''} error={paymentValueError?true:false}></TextField>
+                            <TextField type={"text"} value={paymentValue} label="Contact" onChange={(e)=>{ setPaymentValue(e.target.value) }} helperText={paymentValueError?paymentValueError:''} error={paymentValueError?true:false} disabled={disabled}></TextField>
                         </Grid>
                         <Grid xs={12} Item textAlign={"center"} p={2}>
-                            <TextField type={"text"} value={paymentKey} label="Payment Key" onChange={(e)=>{ setPaymentKey(e.target.value) }} helperText={paymentKeyError?paymentKeyError:''} error={paymentKeyError?true:false}></TextField>
+                            <TextField type={"text"} value={paymentKey} label="Payment Key" onChange={(e)=>{ setPaymentKey(e.target.value) }} helperText={paymentKeyError?paymentKeyError:''} error={paymentKeyError?true:false} disabled={disabled}></TextField>
                         </Grid>
                         <Grid xs={12} Item textAlign={"center"} p={2}>
-                            <Button variant="contained" onClick={(e)=>{submitForm(e)}}>{ btnName }</Button>
+                            <Button variant="contained" onClick={(e)=>{submitForm(e)}} disabled={disabled}>{ btnName }</Button>
                         </Grid>
 
                     </Grid>

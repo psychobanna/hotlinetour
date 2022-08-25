@@ -96,10 +96,10 @@ class AgentController extends BaseController
         $data = [
             'full_name'   => $request->getPost('full_name'),
             'email' => $request->getPost('email'),
-            'passport_num' => $request->getPost('passport_num'),
-            'passport_dob' => $request->getPost('passport_dob'),
-            'passport_issue' => $request->getPost('passport_issue'),
-            'passport_expiry' => $request->getPost('passport_expiry'),
+            'passport_num' => "",
+            'passport_dob' => "",
+            'passport_issue' => "",
+            'passport_expiry' => "",
             'contact' => $request->getPost('contact'),
         ];
         $full_name = $request->getPost('full_name');
@@ -107,10 +107,10 @@ class AgentController extends BaseController
         $rule = [
             'full_name'   => 'required|is_unique[agent.full_name,{$full_name}]|min_length[3]',
             'email' => 'required|is_unique[agent.email,{$email}]|min_length[3]',
-            'passport_num' => 'required|min_length[3]',
-            'passport_dob' => 'required|min_length[3]',
-            'passport_issue' => 'required|min_length[3]',
-            'passport_expiry' => 'required|min_length[3]',
+            // 'passport_num' => 'required|min_length[3]',
+            // 'passport_dob' => 'required|min_length[3]',
+            // 'passport_issue' => 'required|min_length[3]',
+            // 'passport_expiry' => 'required|min_length[3]',
             'contact' => 'required|min_length[3]'
         ];
 

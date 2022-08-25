@@ -96,7 +96,7 @@ class BookingController extends BaseController
             'agent_id' => 'required|min_length[1]',
             'email' => 'required|min_length[3]',
             'phone' => 'required|min_length[3]',
-            'amount' => 'required|min_length[3]',
+            'amount' => 'required',
         ];
 
         if (! $this->validateData($data, $rule)) {
