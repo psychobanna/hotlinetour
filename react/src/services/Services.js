@@ -9,7 +9,8 @@ export class Services{
         
     }
 
-    BaseUrl = "http://localhost:8080/api/";
+    // BaseUrl = "https://sagartour09.in/api/";
+    BaseUrl = "localhost/api/";
 
 
     

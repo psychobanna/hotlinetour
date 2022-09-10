@@ -40,6 +40,8 @@ function Login(props) {
         let data = {"username":username,"password":password};
         const n = await request.PostMethod("login",data);
         
+        console.log(n);
+
         if(n.data.response_code == 422){
             setAlertMessage(n.data.message);
             setAlertType("error");

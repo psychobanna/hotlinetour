@@ -272,7 +272,7 @@ export const BookingForm = () => {
       setOpenPopup(false);
     };
 
-    return <>{ticketStatus?(<div style={{background:`url(${bg})`,height:" 100vh",backgroundSize: "cover",backgroundPosition: "center"}}><Dialog
+    return <>{ticketStatus?(<div style={{background:`url(${bg})`,height:" 100vh", position: "fixed", overflow:"scroll", width:"100%",backgroundSize: "cover",backgroundPosition: "center"}}><Dialog
                 open={openPopup}
                 onClose={handleClosePopup}
                 aria-labelledby="alert-dialog-title"
@@ -299,8 +299,8 @@ export const BookingForm = () => {
             <Box sx={{ minWidth: 120, paddingTop:"30px",paddingRight:"30px", textAlign:"right" }}>
                 {agentId && <Button variant="contained" onClick={goBack}>Back</Button>}
             </Box>
-            <Card maxWidth="sm" style={{width:"500px",margin:"auto", padding:"30px"}}>
-                <Box sx={{ minWidth: 120 }} style={{padding:"60px 0px 20px 0px", textAlign:"center"}}>
+            <Card maxWidth="sm" style={{width:"100%" ,maxWidth:"360px",margin:"10% auto", padding:"30px"}}>
+                <Box sx={{ minWidth: 120 }} style={{padding:"20px 0px 50px 0px", textAlign:"center"}}>
                     <h2>Book Your Trip</h2>
                 </Box>
                 <Box sx={{ minWidth: 120 }}>

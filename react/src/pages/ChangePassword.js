@@ -16,6 +16,18 @@ export function ChangePassword(props) {
   const [btnName, setBtnName] = useState("Submit");
   
   const [open, setOpen] = React.useState(false);
+  const [compnayName,setCompnayName] = useState("");
+
+    useEffect(()=>{
+        
+        const request = new Services;
+        request.GetCheckToken();
+        request.GetAuthMethod("viewpaymentkeyvalue").then((m)=>{
+            let company = m.data.data[0];
+            localStorage.setItem("company_name",company.company_name);
+            setCompnayName(company.company_name);
+        });
+    })
 
   const submitForm = async (event) => {
       setBtnName("Loading...");
@@ -79,8 +91,7 @@ export function ChangePassword(props) {
   return (
     <div>                
             <Container xs={12}>
-              <h2 style={{fontSize:"50px", textAlign:"center", margin:"100px 0px 20px 0px"}}>{ localStorage.getItem("company_name")?localStorage.getItem("company_name"):"Sagar Hotline"}</h2>
-              <h4 style={{fontSize:"36px", textAlign:"center", margin:"20px 0px 100px 0px"}}>Change Password</h4>
+                <h4 style={{fontSize:"36px", textAlign:"center", margin:"20px 0px 20px 0px"}}>Change Password</h4>
                 <Box sx={{ flexGrow: 1 }}>
                 <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
                     <Alert onClose={handleClose} severity={alertType} sx={{ width: '100%' }}>

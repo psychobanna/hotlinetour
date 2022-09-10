@@ -1,16 +1,24 @@
 import styled from '@emotion/styled';
 import { Box, Card, CardContent, Grid, Paper, Typography } from '@mui/material';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { Services } from '../services/Services';
 
 function Home(props) {
     
-
+    const [compnayName,setCompnayName] = useState("");
+    
     useEffect(()=>{
-        let s = new Services;
-        s.GetCheckToken();
+        const request = new Services;
+        request.GetCheckToken();
+        request.GetAuthMethod("viewpaymentkeyvalue").then((m)=>{
+            let company = m.data.data[0];
+            localStorage.setItem("company_name",company.company_name);
+            setCompnayName(company.company_name);
+        });
+
+
     });
   
     const Item = styled(Paper)(({ theme }) => ({
@@ -31,8 +39,8 @@ function Home(props) {
     return (
         <div>
             <Container style={{margin:"50px auto"}}>
-                <h2 style={{fontSize:"50px", textAlign:"center", margin:"100px 0px 20px 0px"}}>{ localStorage.getItem("company_name")?localStorage.getItem("company_name"):"Sagar Hotline"}</h2>
-                <h4 style={{fontSize:"36px", textAlign:"center", margin:"20px 0px 100px 0px"}}>Dashboard</h4>
+                <h2 style={{fontSize:"50px", textAlign:"center", margin:"20px 0px 20px 0px"}}>{compnayName}</h2>
+                <h4 style={{fontSize:"36px", textAlign:"center", margin:"20px 0px 20px 0px"}}>Dashboard</h4>
                 <Grid container spacing={2}>
                     <Grid item md={3} xs={6}>
                         <Link to={"/ticketsettings"}>

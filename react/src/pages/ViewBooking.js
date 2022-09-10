@@ -66,7 +66,7 @@ export function ViewBooking(props) {
         </Snackbar>
         <Container style={{margin:"50px auto"}}>
             <Grid container spacing={2}>
-                <Grid item md={6} xs={8}>
+                <Grid item md={12} xs={12}>
                     <h4 style={{fontSize:"36px", textAlign:"left", margin:"20px 0px 50px 0px"}}>{"View Booking"}</h4>
                 </Grid>
                 <Grid item md={6} xs={4} style={{fontSize:"36px", textAlign:"right", margin:"20px 0px 50px 0px"}}>

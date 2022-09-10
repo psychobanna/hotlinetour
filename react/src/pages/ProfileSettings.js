@@ -104,7 +104,6 @@ export function ProfileSettings() {
   return (
     <div>                
             <Container xs={12}>
-              <h2 style={{fontSize:"50px", textAlign:"center", margin:"100px 0px 20px 0px"}}>{ localStorage.getItem("company_name")?localStorage.getItem("company_name"):"Sagar Hotline"}</h2>
               <h4 style={{fontSize:"36px", textAlign:"center", margin:"20px 0px 100px 0px"}}>Profile</h4>
                 <Box sx={{ flexGrow: 1 }}>
                 <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>

@@ -18,16 +18,22 @@ export function TicketSettings(props) {
   const [loader, setLoader] = useState("Submit");
   const [tokenID, setTokenID] = React.useState(localStorage.getItem("secure-id"));
   const [disabled, setDisabled] = React.useState(tokenID==1?false:true);
-  
+  const [compnayName,setCompnayName] = useState("");
+
   useEffect(()=>{
 
       const request = new Services;
 
-      
       request.GetAuthMethod("viewticket").then((m)=>{
         let ticket = m.data.data[0];
         setPrice(ticket.price);
         setQty(ticket.qty);
+      });
+        
+      request.GetAuthMethod("viewpaymentkeyvalue").then((m)=>{
+        let company = m.data.data[0];
+        localStorage.setItem("company_name",company.company_name);
+        setCompnayName(company.company_name);
       });
 
   },[]);
@@ -93,13 +99,13 @@ export function TicketSettings(props) {
                 </Snackbar>
                     <Grid container>
                         <Grid item md={12} xs={12}>
-                            <h4 style={{fontSize:"36px", textAlign:"center", margin:"100px 0px 50px 0px"}}>Ticket</h4>
+                            <h4 style={{fontSize:"36px", textAlign:"center", margin:"20px 0px 20px 0px"}}>Ticket</h4>
                         </Grid>
                         <Grid xs={12} Item textAlign={"center"} p={2}>
-                            <TextField style={{width:"400px"}} type={"text"} value={price} label="Price" disabled={disabled} onChange={(e)=>{ onChangePrice(e) }} helperText={priceError?priceError:''} error={priceError?true:false}></TextField>
+                            <TextField type={"text"} value={price} label="Price" disabled={disabled} onChange={(e)=>{ onChangePrice(e) }} helperText={priceError?priceError:''} error={priceError?true:false}></TextField>
                         </Grid>
                         <Grid xs={12} Item textAlign={"center"} p={2}>
-                            <TextField style={{width:"400px"}} type={"text"} value={qty} label="Quantity" disabled={disabled} onChange={(e)=>{ setQty(e.target.value) }} helperText={qtyError?qtyError:''} error={qtyError?true:false}></TextField>
+                            <TextField type={"text"} value={qty} label="Quantity" disabled={disabled} onChange={(e)=>{ setQty(e.target.value) }} helperText={qtyError?qtyError:''} error={qtyError?true:false}></TextField>
                         </Grid>
                         <Grid xs={12} Item textAlign={"center"} p={2}>
                             <Button variant="contained" onClick={(e)=>{submitForm(e)}} disabled={disabled} >{loader}</Button>

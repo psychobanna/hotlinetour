@@ -20,6 +20,7 @@ export function PolicySettings() {
   const [open, setOpen] = React.useState(false);
   const [tokenID, setTokenID] = React.useState(localStorage.getItem("secure-id"));
   const [disabled, setDisabled] = React.useState(tokenID==1?false:true);
+  const [compnayName,setCompnayName] = useState("");
   
  
   useEffect(()=>{
@@ -32,6 +33,12 @@ export function PolicySettings() {
             setContent(page.content);
             setStatus(page.status);
         });
+        
+        request.GetAuthMethod("viewpaymentkeyvalue").then((m)=>{
+          let company = m.data.data[0];
+          localStorage.setItem("company_name",company.company_name);
+          setCompnayName(company.company_name);
+      });
     },[]);
 
   const submitForm = async (event) => {
@@ -95,8 +102,6 @@ export function PolicySettings() {
   return (
     <div>                
             <Container xs={12}>
-              <h2 style={{fontSize:"50px", textAlign:"center", margin:"100px 0px 20px 0px"}}>{ localStorage.getItem("company_name")?localStorage.getItem("company_name"):"Sagar Hotline"}</h2>
-              <h4 style={{fontSize:"36px", textAlign:"center", margin:"20px 0px 100px 0px"}}>Privacy Policy</h4>
                 <Box sx={{ flexGrow: 1 }}>
                 <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
                     <Alert onClose={handleClose} severity={alertType} sx={{ width: '100%' }}>
@@ -104,6 +109,9 @@ export function PolicySettings() {
                     </Alert>
                 </Snackbar>
                     <Grid container>
+                        <Grid xs={12} Item textAlign={"center"} p={2}>
+                            <h4 style={{fontSize:"36px", textAlign:"center", margin:"20px 0px 40px 0px"}}>Privacy Policy</h4>
+                        </Grid>
                         <Grid xs={12} Item textAlign={"center"} p={2}>
                             <TextField type={"text"} value={name} label="Page Title" onChange={(e)=>{ setName(e.target.value) }} helperText={nameError?nameError:''} error={nameError?true:false} disabled={disabled}></TextField>
                         </Grid>
